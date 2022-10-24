@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Exam</title>
+</head>
+<body>
+    <div class="container my-5">
+        <div class="d-flex justify-content-between">
+            <h2>Zimbabwa parrots</h2>
+            <button class="btn btn-primary add__parrot" data-bs-toggle="modal" data-bs-target="#add-parrot-modal">Add parrots
+                <img src="./images/pluc.png" alt="" width="30" height="30">
+            </button>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-3">
+                <h2>Filter</h2>
+                <form id="input__form">
+                    <div class="mb-3">
+                        <label for="search" class="form-label">Search</label>
+                        <input type="search" class="form-control input__search"
+                        placeholder="Falonchi"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Price</label>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="number" class="form-control input__number" min="0" aria-label="From" placeholder="From"/>
+                            </div>
+                            <div class="col-6">
+                                <input type="number" class="form-control input__to" min="0"
+                                aria-label="To" placeholder="To"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Width</label>
+                        <div class="row">
+                            <div class="col-6">
+                                <input  type="number" class="form-control from__width"    min="0" aria-label="From width" placeholder="From width"/>
+                            </div>
+                            <div class="col-6">
+                                <input type="number" class="form-control to__width"
+                                min="0" aria-label="To width" placeholder="To width"/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Height</label>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="number" class="form-control from__height" min="0"
+                                aria-label="From height" placeholder="From height"
+                                />
+                            </div>
+                            <div class="col-6">
+                                <input type="number" class="form-control to__height" min="0"
+                                aria-label="To height" placeholder="To height"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="sortby" class="form-label">Sort by</label>
+                        <select class="form-select select__price">
+                            <option value="1">Name</option>
+                            <option value="price&_order=desc">Price: to lowest</option>
+                            <option value="price&_order=asc">Price: to highest</option>
+                            <option value="3">Birth: to highest</option>
+                            <option value="3">Birth: to lowest</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-primary d-block w-100 py-2" id="filter__btn">Filter</button>
+                </form>
+            </div>
+            
+            <div class="col-9">
+                <div class="d-flex justify-content-between align-items-baseline">
+                    <h2 class="h4 mb-4">Parrots list</h2>
+                    <p><b id="resultCount"></b></p>
+                </div>
+                
+                <div class="loading__wrapper">
+                    <ul class="perrots__wrapper">
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="add-parrot-modal" tabindex="-1"aria-labelledby="addParrotTitle"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addParrotTitle">Add parrot</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="edit__form">
+                    <div class="mb-3">
+                        <label for="parrot-title" class="form-label">Title</label>
+                        <input required type="search" class="form-control"  id="parrot__title"  placeholder="Kakatu"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="parrot-img" class="form-label">Img URL</label>
+                        <input required type="text" class="form-control" id="parrot__img" placeholder="https://..."/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price ($)</label>
+                        <input required type="number" class="form-control" id="parrot__price" placeholder="1000"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="parrot-date" class="form-label">Birth date</label>
+                        <input required type="date" class="form-control" id="parrot__date" placeholder="12.02.2022"/>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Width and Height</label>
+                        <div class="row">
+                            <div class="col-6">
+                                <input required type="number" class="form-control" id="parrot__width" min="0" aria-label="Parrot width" placeholder="Parrot width"/>
+                            </div>
+                            <div class="col-6">
+                                <input required type="number" class="form-control" id="parrot__height" min="0" aria-label="Parrot height" placeholder="Parrot height"/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="features" class="form-label"
+                        >Features ("," bilan ajratib yozing)</label>
+                        <input required type="text"
+                        class="form-control" id="features__parrot" placeholder="Qo'lga o'rgatilgan,Gapira oladi"/>
+                    </div>
+                    <button class="btn btn-primary d-block w-100 p-2 modalBtn">
+                        Add parrot
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<template id="parrots__temp">
+    <li class="col-6">
+        <div class="card">
+            <img
+            src="https://media.istockphoto.com/photos/parrot-hyacinth-macaw-picture-id1359443019?b=1&k=20&m=1359443019&s=170667a&w=0&h=dteRZ9bM7sEvBbFE9it1r9O7IxlILXb1UnSoLNEVMAg="
+            alt=""
+            class="cardImg"
+            />
+            <div class="card-body">
+                <h3 class="cardTitle"></h3>
+                <p class="card-text fw-bold"><mark class="cardPrice"></mark></p>
+                <p class="badge bg-success card-sm"></p>
+                
+                <p class="cardDate">184 x 50</p>
+                
+                <ul class="d-flex flex-wrap list-unstyled list">
+                    
+                </ul>
+                
+                <div class="position-absolute top-0 end-0 d-flex">
+                    <!-- Agar isFavorite false bo'ladigan bo'lsa i'ning classi "fa-solid fa-star" bo'lishi kerak. Agar unday bo'lmasa "fa fa-star-o" -->
+                    <button class="btn rounded-0 btn-success">
+                        <i
+                        class="fa fa-star-o"
+                        style="color: yellow; pointer-events: none"
+                        ></i>
+                    </button>
+                    <button class="btn rounded-0 btn-secondary editBtn" data-bs-toggle="modal" data-bs-target="#add-parrot-modal">
+                        Edit
+                    </button>
+                    <button class="btn rounded-0 btn-danger deleteBtn">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </li>
+</template>
+
+<script src="./js/bootstrap.bundle.min.js"></script>
+<script src="./js/main.js"></script>
+</body>
+</html>
